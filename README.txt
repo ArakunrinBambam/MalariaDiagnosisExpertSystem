@@ -1,4 +1,5 @@
-A very simple set of code has been provided as template for how to create your own backward chaining expert system.  Specifically this system decides what you should bring when walking out of the house (i.e. an umbrella, a raincoat, or nothing). 
+A malaria diagnosis system which uses forward chain and backward chain rule for ascertion.  
+Specifically this system accepts some information on malaria symptoms from users and adviced them on what to do next. 
 This implementations asks the user questions rather than hard-coding a fact base.
 
-To run: driver_simple_question.bc_test()
+To run: driver.diagnose()

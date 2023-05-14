@@ -1,18 +1,960 @@
+#symptoms for baby
+
+check_age 
+    foreach 
+        questions.age($ans)
+    assert
+        facts.age($ans)
+
+has_fever
+    foreach 
+        questions.has_fever(True)
+    assert
+        facts.has_fever(True)
+
+no_fever
+    foreach 
+        questions.has_fever(False)
+    assert
+        facts.has_fever(False)
+
+has_poor_feeding
+    foreach
+        facts.age(children)
+        questions.poor_feeding(True)
+    assert
+        facts.poor_feeding(True)
+
+no_poor_feeding
+    foreach 
+        facts.age(children)
+        questions.poor_feeding(False)
+    assert
+        facts.poor_feeding(False)
+
+has_restlessness
+    foreach
+         
+        facts.age(children) 
+        questions.is_restless(True)
+    assert
+        facts.is_restless(True)
+
+no_restlessness
+    foreach 
+        facts.age(children)
+        questions.is_restless(False)
+    assert
+        facts.is_restless(False)
+
+has_vomiting
+    foreach 
+        questions.is_vomiting(True)
+    assert
+        facts.is_vomiting(True)
+
+no_vomiting
+    foreach 
+        questions.is_vomiting(False)
+    assert
+        facts.is_vomiting(False)
+
+has_pain_in_joint_and_muscles
+    foreach
+        facts.age(adult)
+        questions.has_pain_in_joint_and_muscles(True)
+    assert
+        facts.has_pain_in_joint_and_muscles(True)
+
+no_pain_in_joint_and_muscles
+    foreach 
+        facts.age(adult)
+        questions.has_pain_in_joint_and_muscles(False)
+    assert
+        facts.has_pain_in_joint_and_muscles(False)
+
+has_chills
+    foreach
+        facts.age(adult)
+        questions.has_chills(True)
+    assert
+        facts.has_chills(True)
 
 
-no_rain
-    use what_to_bring(no_rain_gear)
-    when
-        questions.is_raining(False)
+no_chills
+    foreach 
+        facts.age(adult)
+        questions.has_chills(False)
+    assert
+        facts.has_chills(False)
 
-what_to_bring_raincoat
-    use what_to_bring(raincoat)
-    when
-        questions.is_raining(True)
-        questions.is_windy(False)
+has_headache
+    foreach
+        facts.age(adult)
+        questions.has_headache(True)
+    assert
+        facts.has_headache(True)
 
-what_isAge 
-    use what_isAge($ans)
+
+no_headache
+    foreach
+        facts.age(adult)
+        questions.has_headache(False)
+    assert
+        facts.has_headache(False)
+
+
+has_fatigue
+    foreach
+        facts.age(adult)
+        questions.has_fatigue(True)
+    assert
+        facts.has_fatigue(True)
+
+
+no_fatigue
+    foreach
+        facts.age(adult)
+        questions.has_fatigue(False)
+    assert
+        facts.has_fatigue(False)
+
+
+has_yellowish_skin
+    foreach
+        facts.age(adult)
+        questions.has_yellowish_skin(True)
+    assert
+        facts.has_yellowish_skin(True)
+
+
+no_yellowish_skin
+    foreach
+        facts.age(adult)
+        questions.has_yellowish_skin(False)
+    assert
+        facts.has_yellowish_skin(False)
+
+
+loss_of_apetite
+    foreach
+        facts.age(adult)
+        questions.has_loss_of_apetite(True)
+    assert
+        facts.has_loss_of_apetite(True)
+
+
+no_loss_of_apetite
+    foreach
+        facts.age(adult)
+        questions.has_loss_of_apetite(False)
+    assert
+        facts.has_loss_of_apetite(False)
+
+
+
+
+
+
+
+# Infants rules
+
+infant_case1
+    use diagnosis_result("It doesn't appear that the child is malaria infected. However, you can contact doctor your doctor if you feel this response is not fine")
     when 
-        questions.what_is_age($ans)
+        facts.poor_feeding(False)
+        facts.is_vomiting(False)
+        facts.is_restless(False)
+        facts.has_fever(False)
 
+infant_case2
+    use diagnosis_result("It's uncertain that the child has malaria, Consult your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(False)
+        facts.is_restless(False)
+        facts.has_fever(False)
+
+infant_case3
+    use diagnosis_result("It's uncertain that the child has malaria, Consult your doctor")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(True)
+        facts.is_restless(False)
+        facts.has_fever(False)
+
+infant_case4
+    use diagnosis_result("It's uncertain that the child has malaria, Consult your doctor")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(False)
+        facts.is_restless(True)
+        facts.has_fever(False)
+
+infant_case5
+    use diagnosis_result("Fever is a strong symptoms of malaria. HOwever, consult your doctor for further medical care")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(False)
+        facts.is_restless(False)
+        facts.has_fever(True)
+
+infant_case6
+    use diagnosis_result("It's likely the baby has malaria, please consult your doctor")
+    when
+        facts.poor_feeding(True)
+        facts.is_vomiting(True)
+        facts.is_restless(False)
+        facts.has_fever(False)
+
+infant_case7
+    use diagnosis_result("It's likely the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(False)
+        facts.is_restless(True)
+        facts.has_fever(False)
+
+infant_case8
+    use diagnosis_result("It's likely the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(False)
+        facts.is_restless(False)
+        facts.has_fever(True)
+
+infant_case9
+    use diagnosis_result("It's likely the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(True)
+        facts.is_restless(True)
+        facts.has_fever(False)
+
+infant_case10
+    use diagnosis_result("It's likely the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(True)
+        facts.is_restless(False)
+        facts.has_fever(True)
+
+infant_case11
+    use diagnosis_result("It's likely the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(False)
+        facts.is_restless(True)
+        facts.has_fever(True)
+        
+infant_case12
+    use diagnosis_result("There is high chance the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(True)
+        facts.is_restless(True)
+        facts.has_fever(False)
+
+infant_case13
+    use diagnosis_result("There is high chance the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(True)
+        facts.is_restless(False)
+        facts.has_fever(True)
+
+infant_case14
+    use diagnosis_result("There is high chance the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(False)
+        facts.is_restless(True)
+        facts.has_fever(True)
+
+infant_case15
+    use diagnosis_result("There is high chance the baby has malaria, please consult your doctor")
+    when 
+        facts.poor_feeding(False)
+        facts.is_vomiting(True)
+        facts.is_restless(True)
+        facts.has_fever(True)
+
+
+infant_case16
+    use diagnosis_result("There is high chance the baby has malaria, please see your doctor")
+    when 
+        facts.poor_feeding(True)
+        facts.is_vomiting(True)
+        facts.is_restless(True)
+        facts.has_fever(True)
+
+
+
+
+
+
+#Adult rules
+
+adult_case1
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case2
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+
+adult_case3
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case4
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case5
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case6
+    use diagnosis_result("There is high chance the baby has malaria, please consult your doctor")
+    when
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case7
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case8
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case9
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case10
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case11
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(False)
+        
+adult_case12
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case13
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case14
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case15
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case16
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case17
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case18
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case19
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case20
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case21
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case22
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case23
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case24
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case25
+    use diagnosis_result("It's likely you are malaria infected, please consult your doctor")
+    when
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case26
+    use diagnosis_result("It's likely you are malaria infected, please consult your doctor")
+    when
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case27
+    use diagnosis_result("It's likely you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+        
+adult_case28
+    use diagnosis_result("It's likely you are malaria infected, please consult your doctorr")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case29
+    use diagnosis_result("It's likely you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case30
+    use diagnosis_result("yellowish skin is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case31
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case32
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+
+adult_case33
+    use diagnosis_result("It appears you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+        
+
+adult_case35
+    use diagnosis_result("It's unclear you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case36
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case37
+    use diagnosis_result("fever is a strong sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+
+adult_case39
+    use diagnosis_result("It appears you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case40
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case41
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case42
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case43
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when 
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case44
+    use diagnosis_result("It's unclear you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case45
+    use diagnosis_result("yellowish skin is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case46
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case47
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case48
+    use diagnosis_result("It appears you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case49
+    use diagnosis_result("It's unclear you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case50
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case51
+    use diagnosis_result("It does not appear you are malaria infected, please consult your doctor")
+    when 
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(False)
+
+adult_case52
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(True)
+        facts.has_fever(True)
+
+adult_case53
+    use diagnosis_result("fever is a sign of possible malaria infection, please consult your doctor")
+    when
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case54
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case55
+    use diagnosis_result("It appears you are malaria infected, please consult your doctor")
+    when
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(True)
+        facts.has_yellowish_skin(False)
+        facts.has_fatigue(True)
+        facts.has_headache(False)
+        facts.has_pain_in_joint_and_muscles(False)
+        facts.has_chills(True)
+        facts.has_fever(False)
+
+adult_case56
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(False)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(False)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
+
+adult_case57
+    use diagnosis_result("There is high chance you are malaria infected, please see your doctor")
+    when
+        facts.has_loss_of_apetite(True)
+        facts.is_vomiting(False)
+        facts.has_yellowish_skin(True)
+        facts.has_fatigue(True)
+        facts.has_headache(True)
+        facts.has_pain_in_joint_and_muscles(True)
+        facts.has_chills(False)
+        facts.has_fever(True)
